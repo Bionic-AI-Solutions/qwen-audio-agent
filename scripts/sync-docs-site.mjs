@@ -29,7 +29,7 @@ const rootDir = fileURLToPath(new URL('..', import.meta.url))
 const docsDir = join(rootDir, 'docs')
 const siteDir = join(docsDir, '.vitepress', '.site')
 
-const EXCLUDED_DIRS = new Set(['promo', 'roadmap', 'node_modules'])
+const EXCLUDED_DIRS = new Set(['promo', 'roadmap', 'skad', 'node_modules'])
 // Roadmap/presentation pages are maintainer-facing, not user-manual content:
 // they stay in the repo but never land on the site.
 const EXCLUDED_FILES = new Set([

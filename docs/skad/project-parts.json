@@ -1,0 +1,50 @@
+{
+  "generated_by": "SKAD document-project step 9 (deep scan)",
+  "generated_at": "2026-09-05",
+  "project_name": "qwen-audio-agent",
+  "version": "1.11.0",
+  "repository_type": "monorepo",
+  "workspace_manager": "npm workspaces",
+  "declared_workspaces": ["server", "web", "tui", "desktop", "cli", "mobile"],
+  "tracked_files": 985,
+  "module_system": "ESM",
+  "primary_language": "JavaScript (.mjs)",
+  "database": null,
+  "container_deployment": false,
+  "parts": [
+    { "part_id": "server",   "root_path": "server/",   "project_type_id": "backend", "display_name": "Gateway Server",             "tracked_files": 308, "is_workspace": true,  "entry_points": ["server/src/app/bootstrap.mjs", "server/src/app/gateway-application.mjs"], "docs": ["architecture-server.md", "api-contracts-server.md", "data-models.md"] },
+    { "part_id": "web",      "root_path": "web/",      "project_type_id": "web",     "display_name": "Web UI",                     "tracked_files": 47,  "is_workspace": true,  "entry_points": ["web/src/main.jsx"],                    "docs": ["frontend-architecture-web.md", "api-contracts-web.md"] },
+    { "part_id": "desktop",  "root_path": "desktop/",  "project_type_id": "desktop", "display_name": "Desktop Orb (Electron)",     "tracked_files": 89,  "is_workspace": true,  "entry_points": ["desktop/src/main.mjs", "desktop/src/preload.cjs"], "docs": ["frontend-architecture-desktop.md"] },
+    { "part_id": "mobile",   "root_path": "mobile/",   "project_type_id": "mobile",  "display_name": "Mobile Client (Capacitor)",  "tracked_files": 80,  "is_workspace": true,  "entry_points": ["mobile/src/main.jsx"],                 "docs": ["frontend-architecture-mobile.md"] },
+    { "part_id": "tui",      "root_path": "tui/",      "project_type_id": "cli",     "display_name": "Terminal UI",                "tracked_files": 16,  "is_workspace": true,  "entry_points": ["tui/src/index.mjs"],                   "docs": ["architecture-clients.md"] },
+    { "part_id": "cli",      "root_path": "cli/",      "project_type_id": "cli",     "display_name": "CLI (qwenaudio)",            "tracked_files": 19,  "is_workspace": true,  "entry_points": ["cli/bin/qwenaudio.mjs"],               "docs": ["architecture-clients.md"] },
+    { "part_id": "shared",   "root_path": "shared/",   "project_type_id": "library", "display_name": "Shared Protocol & Client SDK","tracked_files": 43, "is_workspace": false, "entry_points": ["package.json#exports (42 entries)"],   "docs": ["architecture-clients.md"] },
+    { "part_id": "examples", "root_path": "examples/", "project_type_id": "library", "display_name": "Reference Implementations",  "tracked_files": 179, "is_workspace": false, "entry_points": ["examples/*/"],                         "docs": ["architecture-clients.md"] }
+  ],
+  "integration_points": [
+    { "from": "web,desktop,mobile,tui", "to": "server",  "type": "WebSocket",       "details": "/api/realtime?sessionId=<id>; GCP6 v6.0.0; base64 PCM in 16kHz / out 24kHz" },
+    { "from": "web,mobile",             "to": "server",  "type": "HTTP/REST",       "details": "api/health, api/domain*, skins/<id>/pet.json; mobile also POST /api/access/pair" },
+    { "from": "desktop",                "to": "server",  "type": "child process",   "details": "gateway-process.mjs spawns and supervises; gateway-instance-lock.mjs leases the port" },
+    { "from": "desktop-renderer",       "to": "desktop-main", "type": "Electron IPC","details": "contextBridge window.qwenAudioAgentDesktop, 33 members" },
+    { "from": "desktop",                "to": "web",     "type": "URL composition", "details": "desktopOrbUrl() loads web/dist with ?desktop=orb&orbSkin&session" },
+    { "from": "mobile",                 "to": "web",     "type": "ESM dynamic import","details": "await import('../../web/src/App.jsx') after pairing" },
+    { "from": "cli",                    "to": "server",  "type": "process lifecycle","details": "gateway-service.mjs, launcher.mjs, instance-lock.mjs" },
+    { "from": "server",                 "to": "ACP backends", "type": "subprocess + ACP", "details": "@agentclientprotocol/sdk 1.3.0 over stdio; 13 adapters" },
+    { "from": "server",                 "to": "A2A agents",   "type": "HTTP JSON-RPC/REST", "details": "@a2a-js/sdk; agent-card resolution; 1s poll, 30s request timeout" },
+    { "from": "server",                 "to": "MCP tools",    "type": "MCP",         "details": "@modelcontextprotocol/sdk 1.30.0" },
+    { "from": "server",                 "to": "voice providers","type": "provider WebSocket","details": "DashScope, speech-to-speech, OpenAI-compatible" },
+    { "from": "server",                 "to": "search/OpenAPI","type": "HTTP",       "details": "Bing HTML, 360, Bailian MCP; OpenAPI adapter" },
+    { "from": "all parts",              "to": "shared", "type": "ESM import",       "details": "64 importing files: server 32, desktop 14, web 8, cli 5, tui 3, mobile 2" },
+    { "from": "desktop",                "to": "mobile", "type": "QR / deep link",   "details": "Invitation via QR (qrcode) or qwaudio://connect deep link" }
+  ],
+  "key_contracts": {
+    "GATEWAY_PROTOCOL_VERSION": "5.7.0",
+    "GATEWAY_CLIENT_PROTOCOL_VERSION": "6.0.0",
+    "gateway_capabilities": 29,
+    "http_routes": 27,
+    "http_route_registrations": 28,
+    "package_exports": 42,
+    "environment_variables": 72,
+    "backend_port_methods": 10
+  }
+}
