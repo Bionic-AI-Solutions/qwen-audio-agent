@@ -1,0 +1,9 @@
+name,displayName,description,module,path,standalone,canonicalId
+"editorial-review-prose","skad-editorial-review-prose","Clinical copy-editor that reviews text for communication issues","core","core/tasks/editorial-review-prose.xml","true","skad-editorial-review-prose"
+"editorial-review-structure","skad-editorial-review-structure","Structural editor that proposes cuts, reorganization, and simplification while preserving comprehension","core","core/tasks/editorial-review-structure.xml","true","skad-editorial-review-structure"
+"help","skad-help","Analyzes what is done and the users query and offers advice on what to do next","core","core/tasks/help.md","true","skad-help"
+"index-docs","skad-index-docs","Generates or updates an index.md to reference all docs in the folder","core","core/tasks/index-docs.xml","true","skad-index-docs"
+"review-edge-case-hunter","skad-review-edge-case-hunter","Walk every branching path and boundary condition in content, report only unhandled edge cases","core","core/tasks/review-edge-case-hunter.xml","true","skad-review-edge-case-hunter"
+"shard-doc","skad-shard-doc","Splits large markdown documents into smaller, organized files based on sections","core","core/tasks/shard-doc.xml","true","skad-shard-doc"
+"workflow","skad-workflow","Execute given workflow by loading its configuration and following instructions","core","core/tasks/workflow.xml","true","skad-workflow"
+"skad-review-adversarial-general","skad-review-adversarial-general","Perform a Cynical Review and produce a findings report. Use when the user requests a critical review of something","core","core/tasks/skad-review-adversarial-general/workflow.md","true","skad-review-adversarial-general"

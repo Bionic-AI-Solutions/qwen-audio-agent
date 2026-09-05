@@ -1,0 +1,3 @@
+canonicalId: skad-dev-tasks
+type: workflow
+description: "Orchestrate task-by-task implementation with automated implement → review → test pipeline, stall detection, and configurable human checkpoints"

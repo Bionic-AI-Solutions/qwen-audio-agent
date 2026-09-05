@@ -1,0 +1,3 @@
+canonicalId: skad-create-tasks
+type: workflow
+description: "Break a ready-for-dev story into self-contained atomic task files for sub-agent implementation"

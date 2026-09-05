@@ -1,0 +1,3 @@
+canonicalId: skad-openproject-sync
+type: workflow
+description: "Sync SKAD sprint status and task progress to OpenProject work packages"
